@@ -23,5 +23,30 @@
       ],
       "customAuth": false
     }
+  },
+  "api": {
+    "festivalapi": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authfestivalapp4e33c4be"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "API_KEY",
+              "apiKeyConfig": {
+                "apiKeyExpirationDays": 365,
+                "description": "public"
+              }
+            }
+          ]
+        }
+      }
+    }
   }
 }
