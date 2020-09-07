@@ -4,23 +4,29 @@
 export const listStages = /* GraphQL */ `
   query ListStages(
     $filter: ModelStageFilterInput
-    $limit: Int
+    # $limit: Int
     $nextToken: String
   ) {
-    listStages(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listStages(filter: $filter, limit: 500, nextToken: $nextToken) {
       items {
         id
         name
         createdAt
         updatedAt
         performances {
+          items {
+            id
+            time
+            performer
+            description
+          }
           nextToken
         }
       }
       nextToken
     }
   }
-`;
+`
 export const getStage = /* GraphQL */ `
   query GetStage($id: ID!) {
     getStage(id: $id) {
@@ -44,7 +50,7 @@ export const getStage = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const getPerformance = /* GraphQL */ `
   query GetPerformance($id: ID!) {
     getPerformance(id: $id) {
@@ -68,13 +74,9 @@ export const getPerformance = /* GraphQL */ `
       }
     }
   }
-`;
+`
 export const listPerformances = /* GraphQL */ `
-  query ListPerformances(
-    $filter: ModelPerformanceFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
+  query ListPerformances($filter: ModelPerformanceFilterInput, $limit: Int, $nextToken: String) {
     listPerformances(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
@@ -96,4 +98,4 @@ export const listPerformances = /* GraphQL */ `
       nextToken
     }
   }
-`;
+`
